@@ -56,21 +56,11 @@ export const routes: Routes = [
         path: 'clientes',
         title: 'Clientes · Portal de Engenharia',
         canActivate: [permissionGuard],
-        loadComponent: featurePlaceholder,
+        loadComponent: () =>
+          import('./features/clientes/clientes.component').then((m) => m.ClientesComponent),
         data: {
           navId: 'clientes',
           permission: PERMISSIONS.clientes,
-          icon: 'groups',
-          eyebrow: 'Comercial e relacionamento',
-          title: 'Clientes',
-          description:
-            'Cadastro único de clientes, contatos, documentos e histórico de relacionamento com a engenharia.',
-          highlights: [
-            'Cadastro de pessoa física e jurídica com dados fiscais',
-            'Contatos por obra e canal preferencial de comunicação',
-            'Histórico de contratos, propostas e medições',
-            'Documentos, procurações e certidões anexados',
-          ],
         },
       },
       {

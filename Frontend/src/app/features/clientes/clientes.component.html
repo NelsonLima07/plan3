@@ -1,0 +1,118 @@
+<div class="clientes-container">
+  <div class="header">
+    <h1>Clientes</h1>
+    <button mat-raised-button color="primary" (click)="novo()" *ngIf="viewMode() === 'list'">
+      <mat-icon>add</mat-icon>
+      Novo Cliente
+    </button>
+  </div>
+
+  <!-- Formulário acima da grid -->
+  <div class="form-section" *ngIf="viewMode() === 'form'">
+    <h2>{{ editingId ? 'Editar Cliente' : 'Novo Cliente' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="salvar()">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Empresa</mat-label>
+          <mat-select formControlName="idEmpresa">
+            <mat-option *ngFor="let emp of empresas()" [value]="emp.id">
+              {{ emp.nomeEmpresa }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('idEmpresa')?.hasError('required')">Empresa é obrigatória</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-label class="radio-label">Tipo de Pessoa *</mat-label>
+        <mat-radio-group formControlName="tipoPessoa" class="radio-group">
+          <mat-radio-button value="F">Pessoa Física</mat-radio-button>
+          <mat-radio-button value="J">Pessoa Jurídica</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nome / Razão Social</mat-label>
+          <input matInput formControlName="nomePessoa" />
+          <mat-error *ngIf="form.get('nomePessoa')?.hasError('required')">Nome é obrigatório</mat-error>
+          <mat-error *ngIf="form.get('nomePessoa')?.hasError('maxlength')">Máximo 120 caracteres</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>CPF / CNPJ</mat-label>
+          <input matInput formControlName="cpfCnpj" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-actions">
+        <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit">Salvar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Grid de clientes -->
+  <div class="grid-section" *ngIf="viewMode() === 'list'">
+    <div class="filter-row">
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Buscar na tabela</mat-label>
+        <input matInput (input)="onFiltroChange($any($event.target).value)" placeholder="Nome, CPF/CNPJ ou Empresa" />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <table mat-table [dataSource]="pagedClientes" class="clientes-table">
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let cliente">
+          <button mat-icon-button color="primary" (click)="editar(cliente)" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="excluir(cliente)" matTooltip="Excluir">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="empresa">
+        <th mat-header-cell *matHeaderCellDef>Empresa</th>
+        <td mat-cell *matCellDef="let cliente">{{ getEmpresaNome(cliente.idEmpresa) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="tipoPessoa">
+        <th mat-header-cell *matHeaderCellDef>Tipo</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.tipoPessoa === 'F' ? 'Física' : 'Jurídica' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nomePessoa">
+        <th mat-header-cell *matHeaderCellDef>Nome / Razão Social</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.nomePessoa }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cpfCnpj">
+        <th mat-header-cell *matHeaderCellDef>CPF / CNPJ</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.cpfCnpj }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="datacadastro">
+        <th mat-header-cell *matHeaderCellDef>Data Cadastro</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.datacadastro | date: 'dd/MM/yyyy' }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="filteredClientes().length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      [pageIndex]="pageIndex"
+      (page)="onPageChange($event)"
+      showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>
