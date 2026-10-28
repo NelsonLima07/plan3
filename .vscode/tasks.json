@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Backend: Build (local)",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": [
+        "build",
+        "-Dquarkus.profile=local"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/Backend"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Backend: Dev (quarkusDev)",
+      "type": "shell",
+      "command": "./gradlew",
+      "args": [
+        "quarkusDev",
+        "-Dquarkus.profile=dev"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/Backend"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
