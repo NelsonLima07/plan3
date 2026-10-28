@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Portal de Engenharia">
+  <defs>
+    <linearGradient id="bpMark" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#f7902a" />
+      <stop offset="1" stop-color="#d96205" />
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="46" height="46" rx="13" fill="url(#bpMark)" />
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 36.5 L24 14.5 L36 36.5" stroke-width="3.4" />
+    <path d="M18.5 36.5 L24 27 L29.5 36.5" stroke-width="2.2" opacity="0.9" />
+    <path d="M10 38.5 H38" stroke-width="3.4" />
+  </g>
+</svg>

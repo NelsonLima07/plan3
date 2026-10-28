@@ -1,0 +1,456 @@
+// ===========================================================================
+// Portal de Engenharia — estilos globais
+// Tema Material 3: azul "planta baixa" (primary) + laranja de segurança
+// (tertiary), tipografia Roboto com títulos em Barlow Condensed.
+// ===========================================================================
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$blue-palette,
+        tertiary: mat.$orange-palette,
+        theme-type: light,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Tokens de marca usados pelos componentes do portal
+// ---------------------------------------------------------------------------
+:root {
+  --bp-navy-950: #05131f;
+  --bp-navy-900: #0a2540;
+  --bp-navy-800: #0d3057;
+  --bp-navy-700: #14406e;
+  --bp-blue-300: #8dc0f5;
+  --bp-blue-200: #b7d7f7;
+  --bp-line: rgba(148, 197, 255, 0.18);
+  --bp-line-strong: rgba(148, 197, 255, 0.34);
+  --bp-paper: #f3f7fc;
+  --bp-orange: #ef7a10;
+  --bp-orange-strong: #d96205;
+  --bp-graphite: #22303f;
+  --bp-muted: #5d7186;
+  --bp-font-brand: 'Barlow Condensed', 'Roboto', sans-serif;
+  --bp-font-mono: 'Roboto Mono', ui-monospace, 'Courier New', monospace;
+}
+
+// ---------------------------------------------------------------------------
+// Base
+// ---------------------------------------------------------------------------
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+// O Angular Material 22 não define a fonte de ligadura dos ícones: garantimos
+// que os Material Symbols sejam usados por padrão.
+.mat-icon {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+}
+
+// ---------------------------------------------------------------------------
+// Utilitários de desenho técnico
+// ---------------------------------------------------------------------------
+.blueprint-grid {
+  background-image:
+    linear-gradient(var(--bp-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-line) 1px, transparent 1px),
+    linear-gradient(rgba(148, 197, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 197, 255, 0.07) 1px, transparent 1px);
+  background-size:
+    120px 120px,
+    120px 120px,
+    24px 24px,
+    24px 24px;
+}
+
+.brand-font {
+  font-family: var(--bp-font-brand);
+}
+
+.bp-mono {
+  font-family: var(--bp-font-mono);
+  letter-spacing: 0.06em;
+}
+
+// ---------------------------------------------------------------------------
+// Primitivas de prancha: logotipo, arte vetorial e selo (title block)
+// Reutilizáveis pelas telas de engenharia do portal.
+// ---------------------------------------------------------------------------
+.bp-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.bp-logo__bg {
+  fill: var(--bp-orange);
+}
+
+.bp-logo__truss,
+.bp-logo__ground {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.bp-logo__truss--inner {
+  stroke-width: 1.6;
+  opacity: 0.85;
+}
+
+.bp-art__line {
+  fill: none;
+  stroke: rgba(180, 214, 250, 0.7);
+  stroke-width: 1.3;
+}
+
+.bp-art__line-strong {
+  fill: none;
+  stroke: #e8f3ff;
+  stroke-width: 1.9;
+}
+
+.bp-art__dash {
+  fill: none;
+  stroke: rgba(180, 214, 250, 0.42);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 5;
+}
+
+.bp-art__fill {
+  fill: rgba(120, 176, 240, 0.16);
+  stroke: rgba(180, 214, 250, 0.7);
+  stroke-width: 1.3;
+}
+
+.bp-art__fill-soft {
+  fill: rgba(150, 196, 245, 0.34);
+}
+
+.bp-art__fill-solid {
+  fill: #ffab5e;
+}
+
+.bp-art__hatch-fill {
+  fill: url(#bp-hatch);
+  stroke: rgba(180, 214, 250, 0.6);
+  stroke-width: 1.2;
+}
+
+.bp-art__hatch-line {
+  stroke: rgba(180, 214, 250, 0.5);
+  stroke-width: 2;
+}
+
+.bp-art__dim {
+  fill: none;
+  stroke: var(--bp-orange);
+  stroke-width: 1.2;
+}
+
+.bp-art__text {
+  fill: rgba(206, 228, 252, 0.9);
+  font-family: var(--bp-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.bp-art__text-dim {
+  fill: #ffab5e;
+  font-family: var(--bp-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+
+.bp-stamp {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  border: 1px solid var(--bp-line-strong);
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.bp-stamp__cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 12px;
+  color: #e8f3ff;
+
+  + .bp-stamp__cell {
+    border-left: 1px solid var(--bp-line-strong);
+  }
+}
+
+.bp-stamp__cell--tight {
+  min-width: 66px;
+  text-align: center;
+}
+
+.bp-stamp__label {
+  font-size: 9px;
+  color: rgba(180, 214, 250, 0.62);
+}
+
+// ---------------------------------------------------------------------------
+// Primitivas de interface do portal: cartões, selos, indicadores e rótulos.
+// Usadas pelas páginas de conteúdo (Home/feed, Dashboard, Obras...).
+// ---------------------------------------------------------------------------
+.bp-card {
+  border: 1px solid rgba(13, 48, 87, 0.1);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 20px 44px -36px rgba(10, 37, 64, 0.55);
+}
+
+.bp-card--dark {
+  border-color: var(--bp-line-strong);
+  background: var(--bp-navy-800);
+  color: #eaf3ff;
+  box-shadow: none;
+}
+
+.bp-eyebrow {
+  margin: 0;
+  font-family: var(--bp-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bp-muted);
+}
+
+.bp-eyebrow--light {
+  color: var(--bp-blue-300);
+}
+
+.bp-heading {
+  margin: 0;
+  font-family: var(--bp-font-brand);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+  color: var(--bp-navy-900);
+}
+
+.bp-text {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--bp-muted);
+}
+
+.bp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px;
+  border: 1px solid rgba(21, 101, 192, 0.28);
+  border-radius: 999px;
+  background: rgba(21, 101, 192, 0.07);
+  font-family: var(--bp-font-mono);
+  font-size: 10.5px;
+  font-style: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--bp-navy-700);
+}
+
+.bp-chip--accent {
+  border-color: rgba(239, 122, 16, 0.35);
+  background: rgba(239, 122, 16, 0.12);
+  color: var(--bp-orange-strong);
+}
+
+.bp-chip--muted {
+  border-style: dashed;
+  border-color: rgba(93, 113, 134, 0.4);
+  background: transparent;
+  color: var(--bp-muted);
+}
+
+.bp-chip--ghost {
+  border-color: var(--bp-line-strong);
+  background: transparent;
+  color: var(--bp-blue-200);
+}
+
+.bp-kpi {
+  display: grid;
+  gap: 4px;
+}
+
+.bp-kpi__value {
+  font-family: var(--bp-font-brand);
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 600;
+  line-height: 1;
+  color: inherit;
+}
+
+.bp-kpi__label {
+  font-family: var(--bp-font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.bp-progress {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(13, 48, 87, 0.12);
+  overflow: hidden;
+}
+
+.bp-progress__bar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--bp-orange), #ffab5e);
+}
+
+// ---------------------------------------------------------------------------
+// Estruturas de página: cabeçalho de seção, miniatura técnica e links de lista
+// ---------------------------------------------------------------------------
+.bp-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.bp-section-title {
+  margin: 0;
+  font-family: var(--bp-font-brand);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--bp-navy-900);
+}
+
+.bp-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--bp-navy-700);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--bp-orange-strong);
+  }
+
+  .mat-icon {
+    flex: none;
+  }
+}
+
+.bp-cover {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  background-color: var(--bp-navy-800);
+
+  svg {
+    width: 88%;
+    height: auto;
+  }
+}
+
+.bp-list-link {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 10px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  color: var(--bp-navy-800);
+  text-decoration: none;
+
+  .mat-icon {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    color: var(--bp-navy-700);
+  }
+
+  > span {
+    flex: 1;
+  }
+
+  &:hover {
+    background: rgba(21, 101, 192, 0.08);
+  }
+}
+
+.bp-list-link__end {
+  color: var(--bp-muted) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Animações compartilhadas
+// ---------------------------------------------------------------------------
+@keyframes bp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

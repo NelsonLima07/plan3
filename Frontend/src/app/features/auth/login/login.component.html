@@ -1,0 +1,97 @@
+<div class="login-page">
+  <!-- Painel de apresentação (prancha) -->
+  <app-brand-panel />
+
+  <!-- Formulário de acesso -->
+  <main class="login-panel">
+    <mat-card class="login-card" appearance="outlined">
+      <mat-card-content class="login-card-content">
+        <p class="login-eyebrow bp-mono">Acesso restrito</p>
+        <h1 class="login-title">Bem-vindo de volta</h1>
+        <p class="login-subtitle">Entre com suas credenciais para acessar o portal.</p>
+
+        @if (errorMessage(); as message) {
+          <div class="login-alert" role="alert">
+            <mat-icon>error</mat-icon>
+            <span>{{ message }}</span>
+          </div>
+        }
+
+        <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="login-field">
+            <mat-label>Usuário</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input
+              matInput
+              formControlName="username"
+              autocomplete="username"
+              placeholder="seu.usuario"
+              (input)="clearError()"
+            />
+            @if (form.controls.username.touched && form.controls.username.invalid) {
+              <mat-error>Informe o usuário.</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" subscriptSizing="dynamic" class="login-field">
+            <mat-label>Senha</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input
+              matInput
+              [type]="hidePassword() ? 'password' : 'text'"
+              formControlName="password"
+              autocomplete="current-password"
+              placeholder="••••••"
+              (input)="clearError()"
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              class="password-toggle"
+              [attr.aria-label]="hidePassword() ? 'Mostrar senha' : 'Ocultar senha'"
+              (click)="togglePassword()"
+            >
+              <mat-icon>{{ hidePassword() ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+            @if (form.controls.password.touched && form.controls.password.invalid) {
+              <mat-error>Informe a senha.</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="login-actions">
+            <button type="button" class="forgot-link" (click)="openForgotPassword()">
+              Esqueceu a senha?
+            </button>
+          </div>
+
+          <button mat-flat-button type="submit" class="login-submit" [disabled]="loading()">
+            @if (loading()) {
+              <mat-spinner class="login-spinner" [diameter]="20" />
+            }
+            <span>{{ loading() ? 'Validando acesso...' : 'Entrar' }}</span>
+            @if (!loading()) {
+              <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+            }
+          </button>
+        </form>
+
+        <div class="demo-hint">
+          <mat-icon>science</mat-icon>
+          <div class="demo-hint__content">
+            <p>
+              <strong>Ambiente de demonstração</strong> — o menu é montado pelas permissões do
+              usuário:
+            </p>
+            <ul class="demo-hint__list bp-mono">
+              <li><strong>admin</strong> / admin — acesso total, incluindo Configurações</li>
+              <li><strong>engenheiro</strong> / engenheiro — operação, sem Configurações</li>
+            </ul>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <p class="login-footnote">Precisa de acesso? Solicite ao administrador do portal.</p>
+  </main>
+</div>

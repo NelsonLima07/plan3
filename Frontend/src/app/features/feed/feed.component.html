@@ -1,0 +1,175 @@
+<div class="feed">
+  <div class="feed-grid">
+    <div class="feed-column">
+      <!-- ============ Hero institucional + indicadores ============ -->
+      <app-feed-hero />
+
+      <!-- ============ Serviços / capacidades ============ -->
+      <section class="feed-section" id="servicos" aria-labelledby="feed-services-title">
+        <header class="bp-section-head">
+          <div>
+            <p class="bp-eyebrow">Nossas frentes</p>
+            <h2 id="feed-services-title" class="bp-section-title">Capacidades técnicas da casa</h2>
+          </div>
+          <p class="feed-section__hint">
+            Equipes dedicadas por disciplina, com responsável técnico identificado em cada contrato.
+          </p>
+        </header>
+
+        <div class="feed-services">
+          @for (service of services; track service.title) {
+            <article class="bp-card feed-service">
+              <span class="feed-service__icon" aria-hidden="true">
+                <mat-icon>{{ service.icon }}</mat-icon>
+              </span>
+              <h3 class="feed-service__title">{{ service.title }}</h3>
+              <p class="bp-text feed-service__text">{{ service.description }}</p>
+              <footer class="feed-service__tags">
+                @for (tag of service.tags; track tag) {
+                  <em class="bp-chip bp-chip--muted">{{ tag }}</em>
+                }
+              </footer>
+            </article>
+          }
+        </div>
+      </section>
+
+      <!-- ============ Obras em destaque ============ -->
+      <section class="feed-section" aria-labelledby="feed-projects-title">
+        <header class="bp-section-head">
+          <div>
+            <p class="bp-eyebrow">Carteira</p>
+            <h2 id="feed-projects-title" class="bp-section-title">Obras em destaque</h2>
+          </div>
+          <a class="bp-action-link" routerLink="/obras">
+            Ver todas as obras
+            <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+          </a>
+        </header>
+
+        <div class="feed-projects">
+          @for (project of projects; track project.name) {
+            <app-project-card [project]="project" />
+          }
+        </div>
+      </section>
+
+      <!-- ============ Feed de novidades ============ -->
+      <section class="feed-section" aria-labelledby="feed-posts-title">
+        <header class="bp-section-head">
+          <div>
+            <p class="bp-eyebrow">{{ greeting() }}, {{ firstName() }} · {{ today }}</p>
+            <h2 id="feed-posts-title" class="bp-section-title">Novidades do portal</h2>
+          </div>
+        </header>
+
+        <div class="feed-posts">
+          @for (post of posts; track post.id) {
+            <article class="bp-card feed-post">
+              <header class="feed-post__head">
+                <span class="feed-post__avatar bp-mono" aria-hidden="true">
+                  {{ initialsOf(post.author) }}
+                </span>
+                <span class="feed-post__author">
+                  <strong>{{ post.author }}</strong>
+                  <small>{{ post.role }} · {{ post.date }}</small>
+                </span>
+                <em class="bp-chip bp-chip--ghost">{{ kindLabel(post.kind) }}</em>
+              </header>
+
+              <h3 class="feed-post__title">{{ post.title }}</h3>
+              <p class="bp-text feed-post__body">{{ post.body }}</p>
+
+              <footer class="feed-post__foot">
+                <span class="feed-post__tags">
+                  @for (tag of post.tags; track tag) {
+                    <em class="bp-chip bp-chip--muted">#{{ tag }}</em>
+                  }
+                </span>
+                <span class="feed-post__stats bp-mono">
+                  <mat-icon aria-hidden="true">thumb_up</mat-icon>
+                  {{ post.likes }}
+                  <mat-icon aria-hidden="true">mode_comment</mat-icon>
+                  {{ post.comments }}
+                </span>
+              </footer>
+            </article>
+          }
+        </div>
+      </section>
+
+      <!-- ============ Certificações ============ -->
+      <section class="feed-section" aria-labelledby="feed-certs-title">
+        <header class="bp-section-head">
+          <div>
+            <p class="bp-eyebrow">Conformidade</p>
+            <h2 id="feed-certs-title" class="bp-section-title">Certificações e qualificações</h2>
+          </div>
+        </header>
+
+        <ul class="feed-certs">
+          @for (certification of certifications; track certification.label) {
+            <li class="bp-card feed-cert">
+              <mat-icon aria-hidden="true">verified</mat-icon>
+              <strong>{{ certification.label }}</strong>
+              <small>{{ certification.description }}</small>
+            </li>
+          }
+        </ul>
+      </section>
+    </div>
+
+    <!-- ============ Coluna lateral ============ -->
+    <aside class="feed-rail">
+      <section class="bp-card feed-rail__card">
+        <header class="feed-rail__head">
+          <mat-icon aria-hidden="true">event_upcoming</mat-icon>
+          <h2 class="bp-heading feed-rail__title">Próximos marcos</h2>
+        </header>
+        <ul class="feed-milestones">
+          @for (milestone of milestones; track milestone.title) {
+            <li class="feed-milestone">
+              <span class="feed-milestone__date bp-mono">{{ milestone.date }}</span>
+              <span class="feed-milestone__info">
+                <strong>{{ milestone.title }}</strong>
+                <small>{{ milestone.project }}</small>
+              </span>
+              <em [class]="statusChip(milestone.status)">{{ milestone.status }}</em>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="bp-card feed-rail__card">
+        <header class="feed-rail__head">
+          <mat-icon aria-hidden="true">bolt</mat-icon>
+          <h2 class="bp-heading feed-rail__title">Acesso rápido</h2>
+        </header>
+        <ul class="feed-links">
+          @for (link of quickLinks; track link.route) {
+            <li>
+              <a class="bp-list-link" [routerLink]="link.route">
+                <mat-icon aria-hidden="true">{{ link.icon }}</mat-icon>
+                <span>{{ link.label }}</span>
+                <mat-icon class="bp-list-link__end" aria-hidden="true">chevron_right</mat-icon>
+              </a>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="bp-card bp-card--dark feed-help">
+        <mat-icon aria-hidden="true">support_agent</mat-icon>
+        <h2 class="bp-heading feed-help__title">Central de ajuda</h2>
+        <p class="bp-text feed-help__text">
+          Dúvidas sobre medições, laudos ou acessos? Fale com a engenharia responsável.
+        </p>
+        <a mat-flat-button class="feed-help__cta" href="mailto:engenharia@plan3.com.br">
+          Falar com um especialista
+        </a>
+      </section>
+    </aside>
+  </div>
+
+  <app-institutional-footer />
+</div>

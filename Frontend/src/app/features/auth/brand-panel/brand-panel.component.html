@@ -1,0 +1,129 @@
+<aside class="panel">
+  <header class="panel-header">
+    <span class="panel-mark" aria-hidden="true">
+      <svg class="bp-logo" viewBox="0 0 48 48" role="presentation" focusable="false">
+        <rect x="1.5" y="1.5" width="45" height="45" rx="13" class="bp-logo__bg" />
+        <path d="M10 37 L24 13 L38 37" class="bp-logo__truss" />
+        <path d="M17 37 L24 25 L31 37" class="bp-logo__truss bp-logo__truss--inner" />
+        <path d="M8 37 H40" class="bp-logo__ground" />
+      </svg>
+    </span>
+    <span class="panel-wordmark">
+      <strong>Portal de Engenharia</strong>
+      <small class="bp-mono">plan3 · gestão de obras</small>
+    </span>
+  </header>
+
+  <div class="panel-copy">
+    <p class="panel-eyebrow bp-mono">Engenharia civil · projetos · planejamento</p>
+    <h2 class="panel-title">Do orçamento à entrega da obra, tudo em um só lugar.</h2>
+    <p class="panel-text">
+      Centralize clientes, projetos, cronogramas e medições. Acompanhe cada etapa da obra com
+      informação confiável para decidir rápido.
+    </p>
+    <ul class="panel-tags">
+      <li>Clientes</li>
+      <li>Projetos</li>
+      <li>Obras</li>
+      <li>Planejamento</li>
+    </ul>
+  </div>
+
+  <figure class="panel-art">
+    <svg
+      viewBox="0 0 560 400"
+      role="img"
+      aria-label="Desenho técnico de uma edificação em construção ao lado de uma grua"
+    >
+      <defs>
+        <pattern id="bp-windows" width="34" height="44" patternUnits="userSpaceOnUse">
+          <rect x="8" y="12" width="18" height="16" class="bp-art__fill-soft" />
+        </pattern>
+        <pattern
+          id="bp-hatch"
+          width="10"
+          height="10"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(45)"
+        >
+          <line x1="0" y1="0" x2="0" y2="10" class="bp-art__hatch-line" />
+        </pattern>
+      </defs>
+
+      <!-- Rosa dos ventos -->
+      <g>
+        <circle cx="52" cy="52" r="20" class="bp-art__line" />
+        <path d="M52 34 L58 60 L52 54 L46 60 Z" class="bp-art__fill-solid" />
+        <text x="52" y="88" class="bp-art__text" text-anchor="middle">N</text>
+      </g>
+
+      <!-- Linha de terreno -->
+      <path d="M30 320 H520" class="bp-art__line-strong" />
+      <path d="M30 340 H520" class="bp-art__dash" />
+
+      <!-- Edificação -->
+      <g>
+        <rect x="120" y="120" width="220" height="200" class="bp-art__fill" />
+        <rect x="120" y="120" width="220" height="200" fill="url(#bp-windows)" />
+        <rect x="112" y="106" width="236" height="14" class="bp-art__fill" />
+        <path d="M120 170 H340 M120 220 H340 M120 270 H340" class="bp-art__dash" />
+        <path
+          d="M120 120 V320 M175 120 V320 M230 120 V320 M285 120 V320 M340 120 V320"
+          class="bp-art__line"
+        />
+        <rect x="104" y="320" width="252" height="14" class="bp-art__hatch-fill" />
+      </g>
+
+      <!-- Grua torre -->
+      <g>
+        <path d="M436 88 V320" class="bp-art__line-strong" />
+        <path d="M452 88 V320" class="bp-art__line-strong" />
+        <path
+          d="M436 110 L452 130 M436 130 L452 110 M436 150 L452 170 M436 170 L452 150 M436 190 L452 210 M436 210 L452 190 M436 230 L452 250 M436 250 L452 230 M436 270 L452 290 M436 290 L452 270"
+          class="bp-art__line"
+        />
+        <path d="M444 88 V58 M444 58 L404 88 M444 58 L510 88" class="bp-art__line" />
+        <path d="M398 88 H524" class="bp-art__line-strong" />
+        <rect x="360" y="72" width="36" height="16" class="bp-art__fill" />
+        <path d="M478 88 V168" class="bp-art__dash" />
+        <path d="M468 168 H492" class="bp-art__line-strong" />
+        <path d="M480 168 l-6 -11 M480 168 l6 -11" class="bp-art__line" />
+      </g>
+
+      <!-- Cotas -->
+      <g>
+        <path d="M84 120 V320" class="bp-art__dim" />
+        <path d="M78 120 H90 M78 320 H90" class="bp-art__dim" />
+        <text
+          x="68"
+          y="220"
+          class="bp-art__text-dim"
+          text-anchor="middle"
+          transform="rotate(-90 68 220)"
+        >
+          18,00 m
+        </text>
+        <path d="M120 348 H340" class="bp-art__dim" />
+        <path d="M120 342 V354 M340 342 V354" class="bp-art__dim" />
+        <text x="230" y="372" class="bp-art__text-dim" text-anchor="middle">24,00 m</text>
+      </g>
+
+      <text x="30" y="26" class="bp-art__text">CORTE AA — ESTRUTURA EM CONCRETO ARMADO</text>
+    </svg>
+  </figure>
+
+  <footer class="panel-stamp bp-stamp bp-mono">
+    <div class="bp-stamp__cell">
+      <span class="bp-stamp__label">Projeto</span>
+      <span>Portal de Engenharia — v0.1</span>
+    </div>
+    <div class="bp-stamp__cell bp-stamp__cell--tight">
+      <span class="bp-stamp__label">Escala</span>
+      <span>1:100</span>
+    </div>
+    <div class="bp-stamp__cell bp-stamp__cell--tight">
+      <span class="bp-stamp__label">Rev.</span>
+      <span>A</span>
+    </div>
+  </footer>
+</aside>

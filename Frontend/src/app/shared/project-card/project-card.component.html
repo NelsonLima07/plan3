@@ -1,0 +1,54 @@
+@let project = this.project();
+
+<article class="bp-card project">
+  <div class="bp-cover blueprint-grid" aria-hidden="true">
+    @switch (project.cover) {
+      @case ('galpao') {
+        <svg viewBox="0 0 240 150" role="presentation" focusable="false">
+          <path d="M16 128 H224" class="bp-art__line-strong" />
+          <path d="M28 60 L44 34 H196 L212 60 Z" class="bp-art__fill" />
+          <path d="M28 60 V128 H212 V60" class="bp-art__line" />
+          <path d="M60 128 V88 H100 V128 M140 128 V88 H180 V128" class="bp-art__dash" />
+          <path d="M28 96 H212 M28 112 H212" class="bp-art__line" />
+        </svg>
+      }
+      @case ('infra') {
+        <svg viewBox="0 0 240 150" role="presentation" focusable="false">
+          <path d="M10 96 H230" class="bp-art__line-strong" />
+          <path d="M10 106 H230" class="bp-art__line" />
+          <path d="M40 96 V134 M120 96 V134 M200 96 V134" class="bp-art__line-strong" />
+          <path d="M40 134 H200" class="bp-art__dash" />
+          <path d="M70 44 V96 M90 44 V96 M150 44 V96 M170 44 V96" class="bp-art__line" />
+          <path d="M70 44 H170" class="bp-art__line-strong" />
+        </svg>
+      }
+      @default {
+        <svg viewBox="0 0 240 150" role="presentation" focusable="false">
+          <path d="M20 128 H220" class="bp-art__line-strong" />
+          <path d="M64 26 H176 V128 H64 Z" class="bp-art__fill" />
+          <path d="M64 60 H176 M64 92 H176 M101 26 V128 M139 26 V128" class="bp-art__line" />
+          <path d="M112 128 V110 H128 V128" class="bp-art__dash" />
+          <path d="M186 52 V128 M206 44 V128" class="bp-art__line" />
+        </svg>
+      }
+    }
+  </div>
+
+  <div class="project__body">
+    <div class="project__top">
+      <h3 class="project__title">{{ project.name }}</h3>
+      <em [class]="statusChip(project.status)">{{ project.status }}</em>
+    </div>
+    <p class="project__client">{{ project.client }}</p>
+    <ul class="project__meta bp-mono">
+      <li>{{ project.location }}</li>
+      <li>{{ project.scope }}</li>
+    </ul>
+    <div class="project__progress">
+      <span class="bp-progress">
+        <span class="bp-progress__bar" [style.width.%]="project.progress"></span>
+      </span>
+      <span class="project__percent bp-mono">{{ project.progress }}%</span>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,353 @@
+:host {
+  display: block;
+}
+
+mat-icon {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+.feed {
+  display: grid;
+  gap: 22px;
+}
+
+.feed-grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: minmax(0, 1fr) 328px;
+  align-items: start;
+}
+
+.feed-column {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+}
+
+// ---------------------------------------------------------------------------
+// Hero institucional lives in `feed-hero` component (app-feed-hero).
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// Seções
+// ---------------------------------------------------------------------------
+.feed-section {
+  display: grid;
+  gap: 16px;
+}
+
+.feed-section__hint {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 13px;
+  color: var(--bp-muted);
+}
+
+// ---------------------------------------------------------------------------
+// Serviços
+// ---------------------------------------------------------------------------
+.feed-services {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.feed-service {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 18px;
+}
+
+.feed-service__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(239, 122, 16, 0.12);
+
+  mat-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    color: var(--bp-orange-strong);
+  }
+}
+
+.feed-service__title {
+  margin: 4px 0 0;
+  font-family: var(--bp-font-brand);
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--bp-navy-900);
+}
+
+.feed-service__text {
+  font-size: 13.5px;
+}
+
+.feed-service__tags,
+.feed-post__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+// ---------------------------------------------------------------------------
+// Obras em destaque (cartão em `shared/project-card`)
+// ---------------------------------------------------------------------------
+.feed-projects {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+// ---------------------------------------------------------------------------
+// Novidades
+// ---------------------------------------------------------------------------
+.feed-posts {
+  display: grid;
+  gap: 14px;
+}
+
+.feed-post {
+  display: grid;
+  gap: 10px;
+  padding: 18px;
+}
+
+.feed-post__head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.feed-post__avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--bp-navy-800);
+  font-size: 12px;
+  color: #eaf3ff;
+}
+
+.feed-post__author {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+
+  strong {
+    font-size: 14px;
+    color: var(--bp-navy-900);
+  }
+
+  small {
+    font-size: 11.5px;
+    color: var(--bp-muted);
+  }
+}
+
+.feed-post__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--bp-navy-800);
+}
+
+.feed-post__body {
+  font-size: 13.5px;
+}
+
+.feed-post__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(13, 48, 87, 0.14);
+}
+
+.feed-post__stats {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  color: var(--bp-muted);
+
+  mat-icon {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Certificações
+// ---------------------------------------------------------------------------
+.feed-certs {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feed-cert {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 16px;
+
+  mat-icon {
+    color: var(--bp-navy-700);
+  }
+
+  strong {
+    font-family: var(--bp-font-brand);
+    font-size: 18px;
+    color: var(--bp-navy-900);
+  }
+
+  small {
+    flex: 1;
+    font-size: 11.5px;
+    text-align: right;
+    color: var(--bp-muted);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Coluna lateral
+// ---------------------------------------------------------------------------
+.feed-rail {
+  display: grid;
+  gap: 16px;
+}
+
+.feed-rail__card {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.feed-rail__head {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  mat-icon {
+    color: var(--bp-orange-strong);
+  }
+}
+
+.feed-rail__title {
+  font-size: 19px;
+}
+
+.feed-milestones {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feed-milestone {
+  display: grid;
+  gap: 4px 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(13, 48, 87, 0.14);
+
+  &:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.feed-milestone__date {
+  grid-row: span 2;
+  align-self: start;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: var(--bp-navy-800);
+  font-size: 11px;
+  color: #eaf3ff;
+}
+
+.feed-milestone__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.25;
+
+  strong {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--bp-navy-900);
+  }
+
+  small {
+    font-size: 11.5px;
+    color: var(--bp-muted);
+  }
+}
+
+.feed-links {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feed-help {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  padding: 20px;
+}
+
+.feed-help__title {
+  font-size: 20px;
+  color: #fff;
+}
+
+.feed-help__text {
+  font-size: 13px;
+  color: rgba(214, 232, 252, 0.82);
+}
+
+.feed-help__cta {
+  --mat-button-filled-container-color: var(--bp-orange);
+  --mat-button-filled-label-text-color: #fff;
+  --mat-button-filled-state-layer-color: #fff;
+  --mat-button-filled-container-shape: 10px;
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+@media (max-width: 1180px) {
+  .feed-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .feed-section__hint {
+    display: none;
+  }
+}

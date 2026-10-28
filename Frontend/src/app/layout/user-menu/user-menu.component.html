@@ -1,0 +1,36 @@
+<button
+  mat-button
+  type="button"
+  class="trigger"
+  [matMenuTriggerFor]="userMenu"
+  aria-haspopup="true"
+  aria-label="Menu do usuário"
+>
+  <span class="trigger__avatar bp-mono" aria-hidden="true">{{ initials() }}</span>
+  <span class="trigger__info">
+    <strong>{{ user()?.name }}</strong>
+    <small>{{ user()?.role }}</small>
+  </span>
+  <mat-icon aria-hidden="true">expand_more</mat-icon>
+</button>
+
+<mat-menu #userMenu="matMenu" xPosition="before">
+  <div class="card">
+    <strong>{{ user()?.name }}</strong>
+    <small class="bp-mono">{{ user()?.username }} · {{ user()?.role }}</small>
+  </div>
+  <mat-divider />
+  <button mat-menu-item type="button" (click)="notifySoon('Meu perfil')">
+    <mat-icon>person</mat-icon>
+    <span>Meu perfil</span>
+  </button>
+  <button mat-menu-item type="button" (click)="notifySoon('Ajuda')">
+    <mat-icon>help</mat-icon>
+    <span>Ajuda e suporte</span>
+  </button>
+  <mat-divider />
+  <button mat-menu-item type="button" (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Sair</span>
+  </button>
+</mat-menu>

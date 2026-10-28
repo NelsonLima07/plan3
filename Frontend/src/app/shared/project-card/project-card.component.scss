@@ -1,0 +1,62 @@
+:host {
+  display: block;
+}
+
+.project {
+  display: grid;
+  overflow: hidden;
+}
+
+.project__body {
+  display: grid;
+  gap: 6px;
+  padding: 16px;
+}
+
+.project__top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project__title {
+  margin: 0;
+  font-family: var(--bp-font-brand);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--bp-navy-900);
+}
+
+.project__client {
+  margin: 0;
+  font-size: 13px;
+  color: var(--bp-muted);
+}
+
+.project__meta {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--bp-navy-700);
+}
+
+.project__progress {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 6px;
+
+  .bp-progress {
+    flex: 1;
+  }
+}
+
+.project__percent {
+  font-size: 11px;
+  color: var(--bp-muted);
+}

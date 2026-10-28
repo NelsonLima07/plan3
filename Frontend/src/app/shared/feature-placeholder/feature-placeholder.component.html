@@ -1,0 +1,32 @@
+<section class="placeholder">
+  <header class="placeholder__hero blueprint-grid">
+    <span class="placeholder__icon" aria-hidden="true">
+      <mat-icon>{{ icon }}</mat-icon>
+    </span>
+    <p class="placeholder__eyebrow bp-mono">{{ eyebrow }}</p>
+    <h1 class="placeholder__title">{{ title }}</h1>
+    <p class="placeholder__text">{{ description }}</p>
+    <em class="bp-chip bp-chip--ghost">em construção</em>
+  </header>
+
+  @if (highlights.length) {
+    <section class="bp-card placeholder__next">
+      <h2 class="bp-heading placeholder__next-title">O que vem por aqui</h2>
+      <ul class="placeholder__list">
+        @for (highlight of highlights; track highlight) {
+          <li>
+            <mat-icon aria-hidden="true">check_circle</mat-icon>
+            <span>{{ highlight }}</span>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+
+  <div class="placeholder__actions">
+    <a mat-stroked-button routerLink="/home" class="placeholder__back">
+      <mat-icon iconPositionEnd>home</mat-icon>
+      Voltar para a Home
+    </a>
+  </div>
+</section>

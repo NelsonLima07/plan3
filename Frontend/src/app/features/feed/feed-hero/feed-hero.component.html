@@ -1,0 +1,30 @@
+<section class="hero blueprint-grid" aria-labelledby="feed-hero-title">
+  <p class="hero__eyebrow bp-mono">Engenharia civil · projetos · obras · operação e manutenção</p>
+  <h1 id="feed-hero-title" class="hero__title">
+    Do projeto à operação, cada etapa sob controle técnico.
+  </h1>
+  <p class="hero__text">
+    Somos uma engenharia que projeta, constrói e mantém. Este portal concentra clientes, propostas,
+    projetos e obras para que a decisão chegue antes do problema.
+  </p>
+
+  <div class="hero__actions">
+    <a mat-flat-button class="hero__cta" routerLink="/projetos">
+      Ver projetos
+      <mat-icon iconPositionEnd>arrow_forward</mat-icon>
+    </a>
+    <a mat-stroked-button class="hero__cta-secondary" href="#servicos">Conheça os serviços</a>
+  </div>
+
+  <ul class="hero__metrics">
+    @for (metric of metrics; track metric.label) {
+      <li class="bp-kpi">
+        <span class="hero__metric-icon" aria-hidden="true">
+          <mat-icon>{{ metric.icon }}</mat-icon>
+        </span>
+        <span class="bp-kpi__value">{{ metric.value }}</span>
+        <span class="bp-kpi__label">{{ metric.label }}</span>
+      </li>
+    }
+  </ul>
+</section>

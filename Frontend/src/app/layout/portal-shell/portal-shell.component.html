@@ -1,0 +1,113 @@
+<mat-sidenav-container class="shell">
+  <mat-sidenav
+    #sidenav
+    class="shell-nav blueprint-grid"
+    [mode]="isHandset() ? 'over' : 'side'"
+    [opened]="!isHandset()"
+  >
+    <header class="shell-nav__brand">
+      <span class="shell-nav__mark" aria-hidden="true">
+        <svg class="bp-logo" viewBox="0 0 48 48" role="presentation" focusable="false">
+          <rect x="1.5" y="1.5" width="45" height="45" rx="13" class="bp-logo__bg" />
+          <path d="M10 37 L24 13 L38 37" class="bp-logo__truss" />
+          <path d="M17 37 L24 25 L31 37" class="bp-logo__truss bp-logo__truss--inner" />
+          <path d="M8 37 H40" class="bp-logo__ground" />
+        </svg>
+      </span>
+      <span class="shell-nav__wordmark">
+        <strong>Portal de Engenharia</strong>
+        <small class="bp-mono">plan3 · gestão de obras</small>
+      </span>
+    </header>
+
+    <div class="shell-nav__search">
+      <mat-icon aria-hidden="true">search</mat-icon>
+      <input
+        type="search"
+        [value]="menuQuery()"
+        (input)="onMenuQuery($event)"
+        placeholder="Filtrar menu…"
+        aria-label="Filtrar itens do menu"
+      />
+    </div>
+
+    <nav class="shell-nav__menu" aria-label="Menu principal">
+      @for (group of menuGroups(); track group.id) {
+        <p class="shell-nav__group bp-mono">{{ group.label }}</p>
+        <ul class="shell-nav__list">
+          @for (item of group.items; track item.id) {
+            <li>
+              <a
+                class="shell-nav__link"
+                [routerLink]="item.route"
+                routerLinkActive="shell-nav__link--active"
+                (click)="closeOnNavigate(sidenav)"
+              >
+                <mat-icon aria-hidden="true">{{ item.icon }}</mat-icon>
+                <span class="shell-nav__label">{{ item.label }}</span>
+                @if (item.badge) {
+                  <em class="bp-chip bp-chip--accent">{{ item.badge }}</em>
+                }
+              </a>
+            </li>
+          }
+        </ul>
+      }
+
+      @if (menuGroups().length === 0) {
+        <p class="shell-nav__empty">Nenhum item corresponde ao filtro.</p>
+      }
+    </nav>
+
+    <footer class="shell-nav__footer">
+      <div class="bp-stamp bp-mono">
+        <div class="bp-stamp__cell">
+          <span class="bp-stamp__label">Ambiente</span>
+          <span>Demonstração · {{ appVersion }}</span>
+        </div>
+        <div class="bp-stamp__cell bp-stamp__cell--tight">
+          <span class="bp-stamp__label">Perfil</span>
+          <span>{{ user()?.role ?? '—' }}</span>
+        </div>
+      </div>
+    </footer>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="shell-body" #contentRef>
+    <mat-toolbar class="shell-toolbar">
+      <button
+        mat-icon-button
+        type="button"
+        class="shell-toolbar__toggle"
+        [attr.aria-label]="isHandset() ? 'Abrir menu' : 'Recolher menu'"
+        (click)="sidenav.toggle()"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span class="shell-toolbar__titles">
+        <span class="shell-toolbar__eyebrow bp-mono">
+          {{ pageEyebrow() ?? 'Portal de Engenharia' }}
+        </span>
+        <strong class="bp-heading">{{ pageTitle() }}</strong>
+      </span>
+
+      <span class="shell-toolbar__spacer"></span>
+
+      <button
+        mat-icon-button
+        type="button"
+        aria-label="Notificações"
+        (click)="notifySoon('Notificações')"
+      >
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <app-user-menu />
+    </mat-toolbar>
+
+    <main class="shell-main">
+      <router-outlet />
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
